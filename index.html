@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SACRE — Promoção</title>
+    <meta
+      name="description"
+      content="SACRE — informação oficial da peça, equipa artística, sinopse e créditos."
+    />
+    <style>
+      :root {
+        --black: #0b0b0b;
+        --white: #ffffff;
+        --yellow: #f2c300;
+        --text-soft: rgba(255, 255, 255, 0.86);
+        --line-soft: rgba(242, 195, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+      }
+
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background: radial-gradient(circle at top right, #191919 0%, var(--black) 48%);
+        color: var(--white);
+        line-height: 1.65;
+        letter-spacing: 0.01em;
+      }
+
+      .page {
+        min-height: 100vh;
+        width: min(740px, 100%);
+        margin: 0 auto;
+        padding: 0.9rem 0.9rem 2rem;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0.65rem;
+      }
+
+      .theater-logo {
+        width: auto;
+        max-width: 148px;
+        max-height: 52px;
+        height: auto;
+        object-fit: contain;
+        background: var(--white);
+        border-radius: 2px;
+        padding: 4px;
+        border: 1px solid var(--yellow);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+        border: 1px solid var(--yellow);
+        height: 62vh;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.15) 60%);
+        z-index: 1;
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0;
+        animation: heroFade 12s ease-in-out infinite;
+      }
+
+      .hero-slide-1 {
+        animation-delay: 0s;
+      }
+
+      .hero-slide-2 {
+        animation-delay: 6s;
+      }
+
+      @keyframes heroFade {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        40% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-slide {
+          animation: none;
+        }
+
+        .hero-slide-1 {
+          opacity: 1;
+        }
+      }
+
+      .hero-content {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .hero-logo {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        width: min(32vw, 120px);
+        max-height: 44px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: clamp(2.1rem, 11vw, 3.8rem);
+        letter-spacing: 0.09em;
+        font-weight: 800;
+      }
+
+      .subtitle {
+        margin-top: 0.5rem;
+        max-width: 30ch;
+        color: var(--yellow);
+        font-size: 0.93rem;
+      }
+
+      .content {
+        margin-top: 1.2rem;
+        display: grid;
+        gap: 1.35rem;
+      }
+
+      .card {
+        padding: 0.15rem 0 0.15rem 0.95rem;
+        border-left: 1px solid var(--line-soft);
+        background: transparent;
+      }
+
+      .card h2 {
+        color: var(--yellow);
+        margin-bottom: 0.7rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .details {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .details li {
+        margin-bottom: 0.5rem;
+        color: var(--text-soft);
+        font-size: 0.96rem;
+      }
+
+      .details strong {
+        color: var(--yellow);
+        font-weight: 700;
+      }
+
+      p {
+        margin: 0 0 0.95rem;
+        white-space: pre-line;
+        color: var(--text-soft);
+        font-size: 0.98rem;
+      }
+
+      .quote {
+        border-left: 2px solid var(--yellow);
+        padding-left: 0.75rem;
+        margin-bottom: 1rem;
+        color: var(--white);
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .gallery img {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid var(--line-soft);
+      }
+
+      footer {
+        margin-top: 1.45rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid rgba(242, 195, 0, 0.24);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      @media (min-width: 761px) {
+        .page {
+          padding: 1.4rem 1.3rem 2.3rem;
+        }
+
+        .topbar {
+          margin-bottom: 0.9rem;
+        }
+
+        .theater-logo {
+          width: min(24vw, 170px);
+          max-height: 60px;
+        }
+
+        .hero {
+          height: 70vh;
+        }
+
+        .hero-logo {
+          width: min(22vw, 140px);
+          max-height: 52px;
+        }
+
+        .subtitle {
+          font-size: 1rem;
+          max-width: 42ch;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .card {
+          padding-left: 1.1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar"></header>
+
+      <section class="hero" aria-label="Imagem principal de SACRE">
+        <img
+          class="hero-slide hero-slide-1"
+          src="images/sacre 1 .jpg"
+          alt="Imagem promocional da peça SACRE"
+        />
+        <img
+          class="hero-slide hero-slide-2"
+          src="images/sacre 2.jpg"
+          alt="Imagem promocional alternativa da peça SACRE"
+        />
+        <div class="hero-content">
+          <img
+            class="theater-logo hero-logo"
+            src="images/pontoC1.jpg"
+            alt="Logo do teatro Ponto C"
+          />
+          <h1>SACRE</h1>
+          <p class="subtitle">
+            Uma peça inspirada em A Consagração da Primavera de Vaslav Nijinsky.
+          </p>
+        </div>
+      </section>
+
+      <section class="content">
+        <article class="card" aria-label="Ficha técnica da peça">
+          <h2>Ficha Artística</h2>
+          <ul class="details">
+            <li><strong>Performer:</strong> Abel Rojo.</li>
+            <li>
+              <strong>Música:</strong> A Consagração da Primavera, transcrita para piano a quatro mãos por Igor Stravinsky.
+            </li>
+            <li><strong>Interpretação ao vivo:</strong> João Almeida / Sérgio de A.</li>
+            <li><strong>Design e Direção Técnica:</strong> Guido Gali.</li>
+            <li><strong>Design gráfica do cartaz:</strong> Nelson Ponce.</li>
+            <li>
+              <strong>Produção:</strong> GILREU O COLETIVO ARTÍSTICO. Sofía Marques de Aguiar, Ernesto Jiménez, Sandra Ramy, María Aguiar Pinto, Helson Falcón.
+            </li>
+            <li><strong>Concepção, Coreografia e Encenação:</strong> Sandra Ramy.</li>
+            <li><strong>Classificação Etária:</strong> M/6.</li>
+          </ul>
+        </article>
+
+        <article class="card" aria-label="Contexto e história da obra">
+          <h2>Sobre a Obra</h2>
+          <p>
+            Após o fracasso que significou a estreia de A Consagração da Primavera a 29 de maio de 1913, e após apenas 9 funções, a peça de Vaslav Nijinski para os Ballets Russes foi retirada com vergonha do repertório da companhia. Muito tempo depois, o seu valor foi reivindicado em apropriações e versões que, apoiadas na música grandiosa de Stravinski, lhe fizessem coreógrafos imprescindíveis da segunda metade do século XX. E só em 1987 foi apresentada ao público uma reconstrução da coreografia original, resultado de uma profunda investigação encomendada pelo Joeffrey Ballet para recuperar toda a informação que precariamente restava daquele acontecimento. Graças à música de Igor Stravinski e ao escândalo que provocou aquela ousada estreia em Paris, há mais de 100 anos, ainda podemos hoje respirar o aroma distante daquele rito.
+          </p>
+          <p>
+            Sacre estreou-se em Havana, a 9 de novembro de 2018, graças à provocação do Festival Habana Clásica na pessoa de Marcos Madrigal e à produção da Fábrica de Arte Cubano, X Alfonso e Sandra Lópes.
+          </p>
+        </article>
+
+        <article class="card" aria-label="Palavras ao programa">
+          <h2>Palavras ao Programa</h2>
+          <p class="quote">
+            “O olho é o Teatro. O cérebro é o público. Eu sou o olho no cérebro”.
+            Vaslav Nijinski.
+          </p>
+          <p>
+            O decorrer da vida, desde o próprio nascimento, é o sacrifício do potencial. A inevitável adoção de padrões constitui um processo de sacrifício constante dessa potencialidade, que nos acompanha e conforma ao longo da nossa existência. Que tende para a complexidade. Desde o ato de sermos nomeados até aos comportamentos que seguimos, que imitamos, as nossas reações fixam-se como características que nos distinguem, ou melhor, que nos recortam contra um fundo. Um fundo comum. Estamos feitos a partir dos outros, segundo o ditame do entorno, da comunidade. Comunidade que, ao mesmo tempo, é formada por indivíduos que atravessam esse mesmo processo de serem delineados pelos seus semelhantes.
+          </p>
+          <p>
+            A longo prazo, num mesmo indivíduo está contida toda a humanidade, repetida em infinitas combinações. É por isso que essa coletividade que determina ao mesmo tempo que é objeto do seu próprio diktado, funciona como um mecanismo “biológico” refratário; vamos todos sendo imagem de todos. Uma resposta a outro reflexo. Se nos concentrarmos, a partir deste ponto de vista, em nesse coletivo, poderíamos chegar a vê-lo como um corpo inexistente, como um ditador inexistente. Não recordamos outro estado anterior ao nosso nome. Não conhecemos mais do que esse ato de sacrifício perpétuo, de consagração. Uma e outra vez nos entregamos à ditadura dos outros. Ilusões consagradas cada uma ao mesmo gesto repetitivo frente ao mesmo espelho.
+          </p>
+          <p>Sandra Ramy.<br />29 de Maio de 2018.</p>
+        </article>
+
+        <article class="card" aria-label="Galeria promocional">
+          <h2>Fotos e Cartaz</h2>
+          <div class="gallery">
+            <img src="images/sacre 1 .jpg" alt="Imagem promocional SACRE para desktop" />
+            <!-- <img src="images/sacre 2.jpg" alt="Imagem promocional SACRE para mobile" />` -->
+          </div>
+        </article>
+
+        <article class="card" aria-label="Agradecimentos">
+          <h2>Agradecimentos</h2>
+          <p>
+            Ponto C Cultura e Criatividade, Mónica Guerreiro, Projeto Pavilhão Mozart, David Ramy, Musicalmente, Paulo Lameiro, Cristiana Francisco, Gil Jerónimo, SAMP, Equipa Samp Contigo/Berço das Artes, Carlos Díaz, Vladimir Cuenca, Marcos Dieppa, Sonny Erice, Laura Perdomo, Nuno Méndes, Rui, Estudios Victor Cordom, Tiziana Domínguez, Sol Aparicio, Manuel Ramy.
+          </p>
+          <p>
+            Agradecemos à Fábrica de Arte Cubano, a X Alfonso, a Sandra Lópes, a Habana Clásica, a Marcos Madrigal, a Alessandro Stella, a Persona Colectivo, a Tamara Venereo e a Adelina H. Fonteboa pelo impulso e apoio que deram forma a esta peça para a sua estreia em Havana.
+          </p>
+        </article>
+      </section>
+
+      <footer>GILREU O COLETIVO ARTÍSTICO — SACRE</footer>
+    </main>
+  </body>
+</html>
